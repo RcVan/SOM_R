@@ -62,6 +62,7 @@ prototypes = som_weights
 
 ## train SOM
 iter_num = 5000
+moniter_step = 100
 for (iter in c(1:iter_num)) {
   
   ## update prototypes using data in trainSet, return nothing, update prototypes globally
@@ -78,7 +79,7 @@ for (iter in c(1:iter_num)) {
   ## iteration info
   print(paste0("Finish Iteration ", iter))
   # plot to see SOM
-  if (iter %% 100 == 0){
+  if (iter %% moniter_step == 0){
     data_center = data.frame(prototypes) # data.frame(som_weights)
     plt = plotSOM(data_center, som_output_width) + 
       labs(title=paste0("SOM for 2-D Gaussian in Iteration ", iter), x = "x", y = "y")
